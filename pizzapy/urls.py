@@ -1,5 +1,6 @@
 COUNTRY_USA = 'us'
 COUNTRY_CANADA = 'ca'
+COUNTRY_INDIA = 'in'
 
 class Urls(object):
     """URLs for doing different things to the API.
@@ -34,6 +35,17 @@ class Urls(object):
                 'track_by_phone' : 'https://trkweb.dominos.ca/orderstorage/GetTrackerData?Phone={phone}',
                 'validate_url' : 'https://order.dominos.ca/power/validate-order',
                 'coupon_url' : 'https://order.dominos.ca/power/store/{store_id}/coupon/{couponid}?lang={lang}',
+            },
+            COUNTRY_INDIA: {
+                'find_url' : 'https://order.dominos.co.in/power/store-locator?s={line1}&c={line2}&type={type}',
+                'info_url' : 'https://order.dominos.co.in/power/store/{store_id}/profile',
+                'menu_url' : 'https://order.dominos.co.in/power/store/{store_id}/menu?lang={lang}&structured=true',
+                'place_url' : 'https://order.dominos.co.in/power/place-order',
+                'price_url' : 'https://order.dominos.co.in/power/price-order',
+                'track_by_order' : 'https://trkweb.dominosco.in/orderstorage/GetTrackerData?StoreID={store_id}&OrderKey={order_key}',
+                'track_by_phone' : 'https://trkweb.dominos.co.in/orderstorage/GetTrackerData?Phone={phone}',
+                'validate_url' : 'https://order.dominos.co.in/power/validate-order',
+                'coupon_url' : 'https://order.dominos.co.in/power/store/{store_id}/coupon/{couponid}?lang={lang}',
             }
         }
     

@@ -18,12 +18,18 @@ class ConsoleInput:
 
         :return: Customer
         """
+        print("\n")
         print("-- PERSONAL INFORMATION --")
         print("To start an order you must provide the following details.\n")
         print("- COUNTRY -")
-        is_canada = input("If you are ordering from Canada please type \"YES\" now: ")
-        if is_canada.strip().upper() in ["YES","Y", "YA"]:
+        order_country = input ("Enter your country (Canada, US, or India): ")
+        if order_country.strip().upper() in ["IN", "INDIA", "I"]:
+            ConsoleInput.country = "IN"
+
+        elif order_country.strip().upper() in ["CA","CANADA", "C"]:
             ConsoleInput.country = "CA"
+        else:
+            ConsoleInput.country = "US"
 
         print("\n- NAME -")
         first_name = ConsoleInput.get_valid_input("Please type your FIRST NAME: ", ConsoleInput.validate_name)
@@ -38,8 +44,12 @@ class ConsoleInput:
         print("HOUSE #, Full Street Name, City, State/Province, ZIP/Postal Code")
         if ConsoleInput.country == "US":
             print("EXAMPLE: 700 Pennsylvania Avenue NW, Washington, DC, 20408")
-        else:
+        elif ConsoleInput.country == "CA":
+            print("\n - Make sure to change and check the location changed in the API - ")
             print("CANADA ADDRESS EXAMPLE: 100 Wellington St, Ottawa, ON, K1A0A9")
+        elif ConsoleInput.country == "IN":
+            print("\n - Make sure to change and check the location changed in the API - ")
+            print("INDIA ADDRESS EXAMPLE: Main Gate Rd IIT Area Powai, Mumbai, Maharashtra, 400076")
 
         address = ConsoleInput.get_valid_input("ADDRESS: ", ConsoleInput.validate_address)
 

@@ -1,3 +1,5 @@
+# python package
+
 from .address import Address
 from .coupon import Coupon
 from .customer import Customer

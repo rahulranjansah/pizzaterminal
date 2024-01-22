@@ -36,6 +36,11 @@ class Menu(object):
     Next time I get pizza, there is a lot of work to be done in 
     documenting this class.
     """
+
+    # if I pass  menu = "Hello from the menu!" --> this is class_attribute
+    # #getter (@property) and (@my_attribute.setter) is used for value authentication
+    
+    # constructor
     def __init__(self, data={}, country=COUNTRY_USA):
         self.variants = data.get('Variants', {})
         self.menu_by_code = {}
@@ -49,13 +54,18 @@ class Menu(object):
             for key, value in data['Categorization'].items():
                 self.root_categories[key] = self.build_categories(value)
 
+    #decorator
+                
     @classmethod
+    # class_method decorator
     def from_store(cls, store_id, lang='en', country=COUNTRY_USA):
         response = request_json(Urls(country).menu_url(), store_id=store_id, lang=lang)
         menu = cls(response)
         return menu
 
     # TODO: Reconfigure structure to show that Codes (not ProductCodes) matter
+    # instance_attribute
+
     def build_categories(self, category_data, parent=None):
         category = MenuCategory(category_data, parent)
         for subcategory in category_data['Categories']:
@@ -63,7 +73,10 @@ class Menu(object):
             category.subcategories.append(new_subcategory)
         for product_code in category_data['Products']:
             if product_code not in self.menu_by_code:
-                raise Exception('PRODUCT NOT FOUND: %s %s' % (product_code, category.code))
+            #     raise Exception('PRODUCT NOT FOUND: %s %s' % (product_code, category.code))
+            # else:
+            #     print(f"Product code {product_code} not found in menu")
+                continue 
             product = self.menu_by_code[product_code]
             category.products.append(product)
             product.categories.append(category)

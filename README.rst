@@ -1,24 +1,7 @@
-pizzapy
+pizzaterminal
 =======
 
-*This has been forked from @Magicjarvis the readme below is the same as his repository..* 
-
-Disclaimer
------------
-This is my fork of https://github.com/gamagori/pizzapi
-It's heavily modified and not well documented, but i'm going to get to that. the below example should work though.
-
-sorry! was kind of in a rush this morning.
-
-Setup
------
-
-1. install python3
-2. download this repository
-3. install the requirements of the repository `pip install -r requirements.txt`
-4. start a python3 interpreter inside of the folder called pizzapy
-5. have fun
-
+*This has been inspired by the work of @techwithtim..* 
 
 Description
 -----------
@@ -30,11 +13,11 @@ It's a port of `the pizzapi node.js module <https://github.com/RIAEvangelist/nod
 Quick Start
 -----------
 
-First construct a ``Customer`` object and set the customer's address:
+Use constructor ``ConsoleInput`` object and set the customer's  name, address, email, and phone:
 
 .. code-block:: python
 
-    customer = Customer('Barack', 'Obama', 'barack@whitehouse.gov', '2024561111', '700 Pennsylvania Avenue NW, Washington, DC, 20408')
+    customer = ConsoleInput.get_new_customer()
 
 Then, find a store that will deliver to the address.
 
@@ -54,7 +37,7 @@ Then search ``menu`` with ``menu.search``. For example, running this command:
 
 .. code-block:: python
 
-    menu.search(Name='Coke')
+    menu.search(Name="Coke")
 
 Should print this to the console:
 
@@ -70,22 +53,13 @@ After you've found your items' product codes, you can create an ``Order`` object
 
 .. code-block:: python
 
-    order = Order.begin_customer_order(customer, my_local_dominos)
-    order.add_item('P12IPAZA') # add a 12-inch pan pizza
-    order.add_item('MARINARA') # with an extra marinara cup
-    order.add_item('20BCOKE')  # and a 20oz bottle of coke
+    order = Order.begin_customer_order(customer, my_local_dominos) #, country = "code")
 
-You can remove items as well!
+Wrap your credit card information in a ``CreditCard`` or ``Cash`` using ``ConsoleInput``:
 
 .. code-block:: python
 
-    order.remove_item('20BCOKE')
-
-Wrap your credit card information in a ``CreditCard``:
-
-.. code-block:: python
-
-    card = CreditCard('4100123422343234', '0115', '777', '90210')
+    card = ConsoleInput.get_credit_card()
 
 And that's it! Now you can place your order.
 
@@ -93,3 +67,5 @@ And that's it! Now you can place your order.
 
     order.place(card)
     my_local_dominos.place_order(order, card)
+
+    Enjoy your Pizza!
